@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-18">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="loginpkg/OLDLoginController.java" kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Downloads/openjfx-17.0.12_windows-x64_bin-sdk/javafx-sdk-17.0.12/lib/javafx.base.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Downloads/openjfx-17.0.12_windows-x64_bin-sdk/javafx-sdk-17.0.12/lib/javafx.controls.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Downloads/openjfx-17.0.12_windows-x64_bin-sdk/javafx-sdk-17.0.12/lib/javafx.fxml.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Downloads/openjfx-17.0.12_windows-x64_bin-sdk/javafx-sdk-17.0.12/lib/javafx.graphics.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Downloads/openjfx-17.0.12_windows-x64_bin-sdk/javafx-sdk-17.0.12/lib/javafx.media.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Downloads/openjfx-17.0.12_windows-x64_bin-sdk/javafx-sdk-17.0.12/lib/javafx.swing.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Downloads/openjfx-17.0.12_windows-x64_bin-sdk/javafx-sdk-17.0.12/lib/javafx.web.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Downloads/openjfx-17.0.12_windows-x64_bin-sdk/javafx-sdk-17.0.12/lib/javafx-swt.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Downloads/OneDrive_1_11-20-2024/mockito-core-5.12.0.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Downloads/OneDrive_1_11-20-2024/byte-buddy-1.15.10.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Downloads/OneDrive_1_11-20-2024/byte-buddy-agent-1.15.10.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Documents/SLF4J/slf4j-api-2.0.0.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Documents/SLF4J/slf4j-simple-2.0.0.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/18157/Documents/SLF4J/sqlite-jdbc-3.46.1.3.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

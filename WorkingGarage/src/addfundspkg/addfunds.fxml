@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="454.0" prefWidth="398.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="110.0" prefWidth="450.0" style="-fx-background-color: dcdcdc;" text="Account Balance Overview" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="98.0" layoutY="168.0" prefHeight="30.0" prefWidth="128.0" text="Your account Balance :">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="accountBalanceField" layoutX="226.0" layoutY="168.0" prefHeight="30.0" prefWidth="128.0" style="-fx-background-color: dcdcdc;">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="11.0" />
+               </font>
+            </Label>
+            <Button fx:id="addFundsButton" layoutX="240.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleAddFundsButton" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: #0aff06; -fx-cursor: hand;" text="Add Funds">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="mainMenuButton" layoutX="102.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleMainMenuButton" prefHeight="38.0" prefWidth="108.0" style="-fx-cursor: hand;" text="Main Menu">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="117.0" layoutY="200.0" prefHeight="54.0" prefWidth="216.0" text="Enter how many funds you'd like to add to your account" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addFundsField" layoutX="150.0" layoutY="270.0" promptText="20.00" />
+            <Label fx:id="statusLabel" layoutX="117.0" layoutY="119.0" prefHeight="38.0" prefWidth="216.0" textFill="RED" wrapText="true">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="152.0" layoutY="274.0" text="\$" />
+            
+            
+
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
