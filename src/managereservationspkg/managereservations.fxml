@@ -21,7 +21,7 @@
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Button>
-            <ListView fx:id="reservationsList" layoutX="110.0" layoutY="100.0" prefHeight="200.0" prefWidth="368.0" />
+            <ListView fx:id="reservationsList" layoutX="76.0" layoutY="100.0" prefHeight="200.0" prefWidth="435.0" />
          </children>
       </AnchorPane>
    </children>
