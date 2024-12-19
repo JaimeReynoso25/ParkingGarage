@@ -1,12 +1,9 @@
 package addfundspkg;
 
-import java.net.URL;
 import java.sql.Connection;
-import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -22,7 +19,7 @@ import sqliterepo.SQLRepository;
  * users can add funds to their account also displays their updated balance.
  */
 
-public class AddFundsController implements Initializable {
+public class AddFundsController {
 
 	
     /**
@@ -65,9 +62,8 @@ public class AddFundsController implements Initializable {
 	@FXML
 	private Label statusLabel;
 	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// display users current balance as soon as they arrive on the scene
+	// display users current balance as soon as they arrive on the scene
+	public void initialize() {
 		loadUserBalance(currentUser);
 	}
 

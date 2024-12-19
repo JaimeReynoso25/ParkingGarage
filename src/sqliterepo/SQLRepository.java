@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import objects.CurrentUser;
 import objects.Reservation;
@@ -359,6 +361,23 @@ public class SQLRepository {
     	} catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public List<String> loadReservations(CurrentUser currentUser) throws SQLException {
+    	String email = currentUser.getEmail();
+    	List<String> reservationDetailsList = new ArrayList<>();
+    	
+    	PreparedStatement stmt = connection.prepareStatement("SELECT start_date, end_date, license_plate FROM reservations WHERE email = ?");
+    	stmt.setString(1, email);
+    	ResultSet rs = stmt.executeQuery();
+    	
+    	while (rs.next()) {
+            String reservationDetails = "Start: " + rs.getString("start_date") +
+            							", End: " + rs.getString("end_date") +
+            							", License Plate: " + rs.getString("license_plate");
+            reservationDetailsList.add(reservationDetails); // Add each reservation to the list
+        }
+    	return reservationDetailsList;
     }
 }
 	
