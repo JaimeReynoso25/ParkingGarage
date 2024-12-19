@@ -27,7 +27,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="mainMenuButton" layoutX="133.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleMainMenuButton" prefHeight="48.0" prefWidth="129.0" style="-fx-cursor: hand;" text="Main Menu">
+            <Button fx:id="loginReturnButton" layoutX="133.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleLoginReturnButton" prefHeight="48.0" prefWidth="129.0" style="-fx-cursor: hand;" text="Return to Login">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>

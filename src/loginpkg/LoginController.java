@@ -15,6 +15,7 @@ import javafx.scene.input.KeyCode;
 import menupkg.MenuController;
 import objects.CurrentUser;
 import registerpkg.RegisterController;
+import wheresmycarpkg.WheresMyCarController;
 import scenechangerpkg.SceneChanger;
 import sqliterepo.SQLRepository;
 
@@ -33,7 +34,6 @@ public class LoginController implements Initializable {
 	public LoginController() {
 	}
 	
-	
     /**
      *  constructor for logincontroller, has parameter
      *
@@ -51,6 +51,9 @@ public class LoginController implements Initializable {
 	
 	@FXML
 	private Button signUpButton;
+	
+	@FXML
+	private Button carSearchButton;
 	
 	@FXML
 	private PasswordField passwordField;
@@ -85,6 +88,16 @@ public class LoginController implements Initializable {
 		sc.sceneChanger(event, "register", "UIS Parking Garage Login", registerController);
 	}
 	
+	@FXML
+	private void handleCarSearchButton(ActionEvent event) {
+		
+		//updates the garage table before entering the Where's my car scene
+		sqlRepository.updateGarageTable();
+		
+		WheresMyCarController wheresMyCarController = new WheresMyCarController(connection);
+		SceneChanger sc = new SceneChanger();
+		sc.sceneChanger(event, "wheresmycar", "Dude, where's my car?!", wheresMyCarController);
+	}
 	
 	
 	 /**

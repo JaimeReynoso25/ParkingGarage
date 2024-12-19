@@ -1,21 +1,16 @@
 package wheresmycarpkg;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
-import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.util.Duration;
 import loginpkg.LoginController;
-import menupkg.MenuController;
 import objects.CurrentUser;
 import scenechangerpkg.SceneChanger;
-import sqliterepo.DBConnection;
 import sqliterepo.SQLRepository;
 
 /**
@@ -40,8 +35,7 @@ public class WheresMyCarController {
      * @param connection 
      */
     
-    public WheresMyCarController(CurrentUser currentUser, Connection connection) {
-        this.currentUser = currentUser;
+    public WheresMyCarController(Connection connection) {
         this.connection = connection;
         sqlRepository = new SQLRepository(connection);
     }
@@ -56,7 +50,7 @@ public class WheresMyCarController {
 
         //platform.runLater() to set focus after the scene is initialized
         Platform.runLater(() -> {
-            getMainMenuButton().requestFocus();
+            loginReturnButton.requestFocus();
         });
     }
 
@@ -76,7 +70,7 @@ public class WheresMyCarController {
     private Button findMyCar;
 
     @FXML
-    private Button mainMenuButton;
+    private Button loginReturnButton;
 
     /**
      * handles the license plate text field
@@ -96,36 +90,29 @@ public class WheresMyCarController {
      */
 
     @FXML
-    private void handleMainMenuButton(ActionEvent event) {
+	private void handleLoginReturnButton(ActionEvent event) {
 
-        System.out.println("Current user email: " + currentUser.getEmail());
-        System.out.println("Current user balance : $" + currentUser.getAccountBalance());
-
-        MenuController menuController = new MenuController(currentUser, connection);
-
-        SceneChanger sc = new SceneChanger();
-        sc.sceneChanger(event, "menu", "UIS Parking Garage Menu", menuController);
-    }
+		LoginController loginController = new LoginController(connection);
+		SceneChanger sc = new SceneChanger();
+		sc.sceneChanger(event, "login", "UIS Parking Garage Login", loginController);
+	}
 
     /**
      * handles the "find my car" button 
      * checks the location of the car based on the license plate
      *
-     * @paramtriggered by the button click
+     * @param triggered by the button click
      */
     
     @FXML
     private void handleFindMyCar(ActionEvent event) {
-
-        String findUserEmail = currentUser.getEmail();
-        System.out.println(findUserEmail);
 
         Integer spotId = sqlRepository.findByLicensePlate(getLicensePlate().getText());
         if (spotId == null) {
             getLocationText().setText("License plate not in garage");
         } else {
             System.out.println(spotId);
-            getLocationText().setText("Your car is located in spot: " + spotId);
+            getLocationText().setText("Your car is located in spot: #" + spotId);
         }
     }
 
@@ -159,11 +146,4 @@ public class WheresMyCarController {
 		this.findMyCar = findMyCar;
 	}
 
-	public Button getMainMenuButton() {
-		return mainMenuButton;
-	}
-
-	public void setMainMenuButton(Button mainMenuButton) {
-		this.mainMenuButton = mainMenuButton;
-	}
 }

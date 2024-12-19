@@ -33,17 +33,17 @@
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </TextField>
-            <Button fx:id="loginButton" layoutX="223.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="42.0" prefWidth="167.0" style="-fx-cursor: hand;" text="Login">
+            <Button fx:id="loginButton" layoutX="223.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="42.0" prefWidth="167.0" style="-fx-cursor: hand;" text="Login">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Button>
-            <Label layoutX="223.0" layoutY="359.0" prefHeight="35.0" prefWidth="78.0" text="Not a user?">
+            <Label layoutX="232.0" layoutY="345.0" prefHeight="35.0" prefWidth="78.0" text="Not a user?">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="signUpButton" layoutX="294.0" layoutY="359.0" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="35.0" prefWidth="78.0" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Sign Up!" textFill="#1004fc" underline="true">
+            <Button fx:id="signUpButton" layoutX="303.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="35.0" prefWidth="78.0" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Sign Up!" textFill="#1004fc" underline="true">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
@@ -64,6 +64,16 @@
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Label>
+            <Label layoutX="187.0" layoutY="380.0" prefHeight="35.0" prefWidth="146.0" text="Looking for your car?">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="carSearchButton" layoutX="326.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleCarSearchButton" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Click here!" textFill="#1004fc" underline="true">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
