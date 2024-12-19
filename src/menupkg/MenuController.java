@@ -3,16 +3,14 @@ package menupkg;
 import java.sql.Connection;
 
 import addfundspkg.AddFundsController;
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.util.Duration;
 import loginpkg.LoginController;
+import managereservationspkg.ManageReservationsController;
 import objects.CurrentUser;
 import reservespotpkg.ReserveSpotController;
 import scenechangerpkg.SceneChanger;
-import wheresmycarpkg.WheresMyCarController;
 
 /**
  * controller class for the main menu of the parking garage application.
@@ -53,7 +51,7 @@ public class MenuController {
 	private Button reserveSpotButton;
 
 	@FXML
-	private Button wheresMyCarButton;
+	private Button manageReservationsButton;
 
 	@FXML
 	private Button logOutButton;
@@ -109,13 +107,13 @@ public class MenuController {
      */
 	
 	@FXML
-	private void handleWheresMyCarButton(ActionEvent event) {
+	private void handleManageReservationsButton(ActionEvent event) {
 		System.out.println("Current user email: " + currentUser.getEmail());
 		System.out.println("Current user balance : $" + currentUser.getAccountBalance());
 
-		WheresMyCarController wheresMyCarController = new WheresMyCarController(currentUser, connection);
+		ManageReservationsController manageReservationsController = new ManageReservationsController(currentUser, connection);
 		SceneChanger sc = new SceneChanger();
-		sc.sceneChanger(event, "wheresmycar", "UIS PArking Garage Where's My Car", wheresMyCarController);
+		sc.sceneChanger(event, "managereservations", "Manage my reservations", manageReservationsController);
 	}
 	
     /**

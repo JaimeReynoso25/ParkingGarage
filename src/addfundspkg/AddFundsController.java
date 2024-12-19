@@ -4,15 +4,12 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.util.Duration;
-import loginpkg.LoginController;
 import menupkg.MenuController;
 import objects.CurrentUser;
 import scenechangerpkg.SceneChanger;
@@ -42,7 +39,7 @@ public class AddFundsController implements Initializable {
      */
 
 	public AddFundsController(CurrentUser currentUser, Connection connection) {
-		this.setCurrentUser(currentUser);
+		this.currentUser = currentUser;
 		this.connection = connection;
 		sqlRepository = new SQLRepository(connection);
 	}

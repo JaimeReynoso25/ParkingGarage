@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="419.0" prefWidth="746.0">
          <children>
@@ -30,7 +30,7 @@
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="wheresMyCarButton" alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleWheresMyCarButton" prefHeight="68.0" prefWidth="144.0" style="-fx-cursor: hand;" text="Where's my Car?" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="manageReservationsButton" alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleManageReservationsButton" prefHeight="68.0" prefWidth="144.0" style="-fx-cursor: hand;" text="Manage Reservations" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
