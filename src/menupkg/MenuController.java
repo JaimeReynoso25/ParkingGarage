@@ -67,14 +67,10 @@ public class MenuController {
 	// Method to handle add funds button
 	@FXML
 	private void handleAddFundsButton(ActionEvent event) {
-		System.out.println("Current user email: " + currentUser.getEmail());
-		System.out.println("Current user balance : $" + currentUser.getAccountBalance());
-
 		// Create an instance of the Add Funds controller and pass user info to it
 		AddFundsController addFundsController = new AddFundsController(currentUser, connection);
 
 		SceneChanger sc = new SceneChanger();
-		System.out.println(connection == null ? "Connection is NULL." : "Connection is NOT NULL.");
 		sc.sceneChanger(event, "addfunds", "UIS Account Balance Overview", addFundsController);
 		
 	}
@@ -90,9 +86,6 @@ public class MenuController {
 	// Method to handle reserve a spot button
 	@FXML
 	private void handleReserveSpotButton(ActionEvent event) {
-		System.out.println("Current user email: " + currentUser.getEmail());
-		System.out.println("Current user balance : $" + currentUser.getAccountBalance());
-
 		ReserveSpotController reserveSpotController = new ReserveSpotController(currentUser, connection);
 
 		SceneChanger sc = new SceneChanger();
@@ -108,9 +101,6 @@ public class MenuController {
 	
 	@FXML
 	private void handleManageReservationsButton(ActionEvent event) {
-		System.out.println("Current user email: " + currentUser.getEmail());
-		System.out.println("Current user balance : $" + currentUser.getAccountBalance());
-
 		ManageReservationsController manageReservationsController = new ManageReservationsController(currentUser, connection);
 		SceneChanger sc = new SceneChanger();
 		sc.sceneChanger(event, "managereservations", "Manage my reservations", manageReservationsController);
@@ -127,8 +117,6 @@ public class MenuController {
 	@FXML
 	private void handleLogOutButton(ActionEvent event) {
 		currentUser.clear();
-		System.out.println("Current user email: " + currentUser.getEmail());
-		System.out.println("Current user balance : $" + currentUser.getAccountBalance());
 
 		LoginController loginController = new LoginController(connection);
 		SceneChanger sc = new SceneChanger();
@@ -136,5 +124,3 @@ public class MenuController {
 	}
 
 }
-
-

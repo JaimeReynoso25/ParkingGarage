@@ -25,7 +25,6 @@ public class CurrentUser {
 	public CurrentUser(String email, double accountBalance) {
 		this.email = email;
 		this.accountBalance = accountBalance;
-		System.out.println("Test Constructor: email = " + email + ", balance = " + accountBalance);
 	}
 	
 
@@ -36,7 +35,6 @@ public class CurrentUser {
 	public void clear() {
 		this.email = null;
 		this.accountBalance = 0;
-		System.out.println("clear() email = " + email + ", act bal = " + accountBalance);
 	}
 	
 	/**
@@ -46,12 +44,10 @@ public class CurrentUser {
 	
 	public void setEmail(String email) {
 		this.email = email;
-		System.out.println("setEmail: " + email);
 	}
 	
 	public void setaccountBalance(double accountBalance) {
 		this.accountBalance = accountBalance;
-		System.out.println("setBalance: " + accountBalance);
 	}
 	
 

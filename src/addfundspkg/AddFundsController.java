@@ -76,10 +76,7 @@ public class AddFundsController {
      */
 	
 	@FXML
-	private void handleMainMenuButton(ActionEvent event) {
-		System.out.println("Current user email: " + currentUser.getEmail());
-		System.out.println("Current user balance : $" + currentUser.getAccountBalance());
-		
+	private void handleMainMenuButton(ActionEvent event) {	
 		// Create an instance of the main menu controller and pass user info to it
 		MenuController menuController = new MenuController(currentUser, connection);
 		SceneChanger sc = new SceneChanger();
@@ -108,13 +105,11 @@ public class AddFundsController {
 			} else {
 				// Handle invalid input
 				statusLabel.setText("Please enter a positive number.");
-				System.out.println("Please enter a positive number.");
 				statusLabel.setVisible(true);
 			}
 
 		} catch (NumberFormatException e) {
 			statusLabel.setText("Please enter a valid number.");
-			System.out.println("Please enter a valid number.");
 			statusLabel.setVisible(true);
 		}
 	}

@@ -39,9 +39,6 @@ public class ManageReservationsController {
 	
 	@FXML
 	private void handleMainMenuButton(ActionEvent event) {
-		System.out.println("Current user email: " + currentUser.getEmail());
-		System.out.println("Current user balance : $" + currentUser.getAccountBalance());
-		
 		// Create an instance of the main menu controller and pass user info to it
 		MenuController menuController = new MenuController(currentUser, connection);
 		SceneChanger sc = new SceneChanger();

@@ -111,7 +111,6 @@ public class WheresMyCarController {
         if (spotId == null) {
             getLocationText().setText("License plate not in garage");
         } else {
-            System.out.println(spotId);
             getLocationText().setText("Your car is located in spot: #" + spotId);
         }
     }

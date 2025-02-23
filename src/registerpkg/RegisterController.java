@@ -3,6 +3,8 @@ package registerpkg;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -91,13 +93,11 @@ public class RegisterController implements Initializable {
 
 			statusLabel1.setVisible(true);
 			statusLabel1.setText("Please enter both fields");
-			System.out.println("Please fill out both fields");
-
+			
 		} else if (!validateEmail(email)) {
 
 			statusLabel1.setText("Please enter a valid email");
 			statusLabel1.setVisible(true);
-			System.out.println("Please enter a valid email");
 
 		} else {
 			if (!sqlRepository.isEmailUnique(email)) {
@@ -109,7 +109,6 @@ public class RegisterController implements Initializable {
 			String registrationStatus = sqlRepository.registerUser(email, password);
 			statusLabel1.setText(registrationStatus);
 			statusLabel1.setVisible(true);
-			System.out.println(registrationStatus);
 		}
 
 	}
@@ -122,9 +121,8 @@ public class RegisterController implements Initializable {
 	 */
 	private boolean validateEmail(String email) {
 		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-		java.util.regex.Matcher m = p.matcher(email);
-		System.out.println(m.matches());
+		Pattern p = Pattern.compile(ePattern);
+		Matcher m = p.matcher(email);
 		return m.matches();
 	}
 

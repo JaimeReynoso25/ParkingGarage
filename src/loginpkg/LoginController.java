@@ -113,13 +113,11 @@ public class LoginController implements Initializable {
 	private void handleLoginButton(ActionEvent event) throws ClassNotFoundException {
 		String email = emailField.getText();
         String password = passwordField.isVisible() ? passwordField.getText() : passwordTextField.getText();
-        
-        
+            
         //handle errors for empty fields
         if (email.isEmpty() || password.isEmpty()) {
         	statusLabel.setVisible(true);
         	statusLabel.setText("Please enter both fields");
-        	System.out.println("Please fill out both fields");
             return;
         }
         
@@ -130,10 +128,7 @@ public class LoginController implements Initializable {
         	//Creates currentUser object and sets the new data
         	CurrentUser currentUser = sqlRepository.setUserDetails(email);
         	statusLabel.setText("Logged in successfully!");
-            System.out.println("Logged in succesfully!");
-            System.out.println("Current user email: " + currentUser.getEmail());
-            System.out.println("Current user balance : $" + currentUser.getAccountBalance());
-            
+      
             //populates the garage table right before log in, making sure 
             //that the current garage table is up to date
             

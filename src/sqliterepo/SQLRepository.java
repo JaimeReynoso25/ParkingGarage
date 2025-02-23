@@ -216,11 +216,6 @@ public class SQLRepository {
     	String query = "INSERT INTO Reservations (email, license_plate, start_date, end_date, alreadyParked) VALUES (?, ?, ?, ?, ?)";
     	try  {
 	    	PreparedStatement pstmt = connection.prepareStatement(query);
-	
-	        System.out.println("Email: " + reserve.getEmail());
-	        System.out.println("License Plate: " + reserve.getLicenseplate());
-            System.out.println("Start Date: " + reserve.getStart_date());
-            System.out.println("End Date: " + reserve.getEnd_date());
 	    	
 	    	pstmt.setString(1, reserve.getEmail());
 	    	pstmt.setString(2, reserve.getLicenseplate());
@@ -274,7 +269,6 @@ public class SQLRepository {
     	        ResultSet rs = pstmt.executeQuery();
     	        
     	        if (rs.next()) {
-    	        	System.out.println(rs.getInt("parkingSpot"));
     	            return rs.getInt("parkingSpot"); 
     	        }
     	    } catch (SQLException e) {
@@ -325,7 +319,6 @@ public class SQLRepository {
                     deleteReservationStmt.setString(1, licensePlate);
                     deleteReservationStmt.executeUpdate();
 
-                    System.out.println("Expired reservation cleared for license plate: " + licensePlate);
                 }
                 //If the reservation is for today and alreadyParked == 0,
                 //meaning that the car still has not been added to the Garage table
@@ -351,7 +344,6 @@ public class SQLRepository {
                         updateGarageStmt.setInt(3, parkingSpot);
                         updateGarageStmt.executeUpdate();
 
-                        System.out.println("Car with license plate " + licensePlate + " parked in spot #" + parkingSpot);
                     } else {
                         System.out.println("No available spots in the garage.");
                     }
@@ -367,7 +359,7 @@ public class SQLRepository {
     	String email = currentUser.getEmail();
     	List<String> reservationDetailsList = new ArrayList<>();
     	
-    	PreparedStatement stmt = connection.prepareStatement("SELECT start_date, end_date, license_plate FROM reservations WHERE email = ?");
+    	PreparedStatement stmt = connection.prepareStatement("SELECT start_date, end_date, license_plate FROM reservations WHERE email = ? ORDER BY start_date");
     	stmt.setString(1, email);
     	ResultSet rs = stmt.executeQuery();
     	

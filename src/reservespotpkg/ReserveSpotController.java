@@ -130,7 +130,6 @@ public class ReserveSpotController {
 //		add licnese to object
 		licensePlate.getText();
 		String lp = licensePlate.getText();
-		System.out.println("License Plate = " + lp);
 	}
 
 	/**
@@ -142,22 +141,18 @@ public class ReserveSpotController {
 	private void handleDateRange() {
 		start = startDate.getValue();
 		end = endDate.getValue();
-		System.out.printf("Start Date: %s, End Date: %s%n", start, end);
 
 		if (start != null && end != null) {
 			if (end.isBefore(start)) {
-				System.out.println("End date cannot be before the start date.");
 				label1.setText("Invalid Date Selection");
 				return;
 			}
 
 			// Calculate the number of days between start and end
 			daysBetween = (int) ChronoUnit.DAYS.between(start, end) + 1;
-//			System.out.printf("Days selected: %d%n", daysBetween);
 			label1.setText("Start Date: " + start + "      End Date: " + end);
 			label2.setText("Days Reserved: " + daysBetween + "      Total cost: $" + (daysBetween * 10));
 		} else {
-			System.out.println("Please select both start and end dates.");
 			label1.setText("Select both start and end dates");
 		}
 	}
@@ -175,30 +170,18 @@ public class ReserveSpotController {
 		// this needs to first check the users balance against the days being reserved
 		double charge = (daysBetween * 10);
 		chargedUser = charge;
-		System.out.println("Checking balance: " + currentUser.getAccountBalance());
-//		System.out.println("Your account will be charged: " + charge);
-		// check license plate if it's not unique, then return that it is in parking
-		// spot #
+		
+		// check if license plate already has a reservation. 
 		if (!sqlRepository.checkLicenseUnique(licensePlate.getText())) {
-//			System.out.println("License Plate is already in garage in spot #"
-//					+ sqlRepository.findByLicensePlate(licensePlate.getText()));
 
-			String uniqueLicense = "License Plate is already in garage in spot #"
-					+ sqlRepository.findByLicensePlate(licensePlate.getText());
-			label1.setText(uniqueLicense);
+			label1.setText("This license plate already has a reservation set.");
 
-			// log user out, disables other buttons from working.
-			mainMenuButton.setDisable(true);
-			payButton.setDisable(true);
-			addFundsButton.setDisable(true);
-			label2.setText("Now logging out...");
-			label3.setText("You will NOT be charged");
-			returnToMenu(10);
+			label2.setText("Only one license plate is allowed in our system.");
+			label3.setText("Please pick a new license plate.");
 
 			// check users funds
 		} else if (currentUser.getAccountBalance() < (charge)) {
 
-//			System.out.println("Insuffiecient Funds, add more funds");
 			label1.setText("Insuffiecient Funds, add more funds");
 		}
 
@@ -219,7 +202,6 @@ public class ReserveSpotController {
 
 			try {
 				CurrentUser newBalance = sqlRepository.updateUserBalance(currentUser, (-charge));
-				System.out.println("Your available funds are: $" + newBalance.getAccountBalance());
 				Double newbal = newBalance.getAccountBalance();
 				String pmt = "Payment processed, your remaining balance is: $" + newbal.toString();
 				label1.setText(pmt);
@@ -233,7 +215,7 @@ public class ReserveSpotController {
 			payButton.setDisable(true);
 
 			label2.setText("Days Reserved: " + start + " - " + end + "| Charged: $" + chargedUser);
-			label3.setVisible(true);
+			label3.setText("Now returning to the main menu...");
 
 			// boolean used for testing purposes
 			successfulRegistration = true;
@@ -264,14 +246,10 @@ public class ReserveSpotController {
 			mainMenuButton.setDisable(false);
 			payButton.setDisable(false);
 
+			//return to main menu
 			MenuController menuController = new MenuController(currentUser, connection);
-
 			SceneChanger sc = new SceneChanger();
 			sc.sceneChanger(currentStage, "menu", "UIS Parking Garage Main Menu", menuController);
-//			
-//			LoginController loginController = new LoginController(connection);
-//			SceneChanger sc = new SceneChanger();
-//			sc.sceneEndChanger(null, "login", "UIS Parking Garage Login", loginController);
 		});
 
 		// Start the pause transition

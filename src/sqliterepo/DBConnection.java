@@ -35,7 +35,6 @@ public class DBConnection {
 				Class.forName("org.sqlite.JDBC");
 				String url = "jdbc:sqlite:garage_system.db";
 				connection = DriverManager.getConnection(url);
-				System.out.println("Connection to SQLite has been established.");
 			} catch (SQLException e) {
 				System.out.println("SQL Exception: " + e.getMessage());
 			} catch (ClassNotFoundException e) {
