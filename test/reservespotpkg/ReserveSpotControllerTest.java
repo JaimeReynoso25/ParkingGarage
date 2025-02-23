@@ -29,7 +29,6 @@ public class ReserveSpotControllerTest {
     private Connection connection;
     private SQLRepository testRepo;
     private CurrentUser currentUser;
-    private Method handleLicensePlateMethod;
     private Method handleDateRangeMethod;
     private Method handlePayButtonMethod;
     private LocalDate localDate = LocalDate.now();
@@ -52,8 +51,6 @@ public class ReserveSpotControllerTest {
         ActionEvent mockEvent = new ActionEvent();
         
         // setup the methods 
-        handleLicensePlateMethod = ReserveSpotController.class.getDeclaredMethod("handleLicensePlate");
-        handleLicensePlateMethod.setAccessible(true);
         handleDateRangeMethod = ReserveSpotController.class.getDeclaredMethod("handleDateRange");
         handleDateRangeMethod.setAccessible(true);
         handlePayButtonMethod = ReserveSpotController.class.getDeclaredMethod("handlePayButton", ActionEvent.class);
@@ -109,17 +106,6 @@ public class ReserveSpotControllerTest {
 
         // assert invalid dates
         assertEquals("Invalid Date Selection", controller.getLabel1().getText());
-    }
-
-    @Test
-    public void testHandleLicensePlate() throws Exception {
-        // setup the licenseplate
-        controller.getLicensePlate().setText("XYZ789");
-
-        handleLicensePlateMethod.invoke(controller);
-
-        // assert
-        assertEquals("XYZ789", controller.getLicensePlate().getText());
     }
     
     @Test

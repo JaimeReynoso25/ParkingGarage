@@ -180,10 +180,7 @@ public class SQLRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-//        else false
         return false;
-    	
     }
     
     /**
@@ -365,8 +362,8 @@ public class SQLRepository {
     	
     	while (rs.next()) {
             String reservationDetails = "Start: " + rs.getString("start_date") +
-            							", End: " + rs.getString("end_date") +
-            							", License Plate: " + rs.getString("license_plate");
+            							",      End: " + rs.getString("end_date") +
+            							",      License Plate: " + rs.getString("license_plate");
             reservationDetailsList.add(reservationDetails); // Add each reservation to the list
         }
     	return reservationDetailsList;

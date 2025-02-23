@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-import addfundspkg.AddFundsController;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
-import loginpkg.LoginController;
 import menupkg.MenuController;
 import objects.CurrentUser;
 import objects.Reservation;
@@ -122,17 +120,6 @@ public class ReserveSpotController {
 	}
 
 	/**
-	 * handles input for the license plate text field add license plate to object
-	 */
-
-	@FXML
-	private void handleLicensePlate() {
-//		add licnese to object
-		licensePlate.getText();
-		String lp = licensePlate.getText();
-	}
-
-	/**
 	 * handles the selection of start and end dates. calculates the total cost based
 	 * on the number of days reserved.
 	 */
@@ -201,10 +188,12 @@ public class ReserveSpotController {
 			}
 
 			try {
-				CurrentUser newBalance = sqlRepository.updateUserBalance(currentUser, (-charge));
-				Double newbal = newBalance.getAccountBalance();
-				String pmt = "Payment processed, your remaining balance is: $" + newbal.toString();
-				label1.setText(pmt);
+				currentUser = sqlRepository.updateUserBalance(currentUser, (-charge));
+				loadUserBalance(currentUser);
+				label1.setText("Payment processed, your remaining balance is: $" + currentUser.getAccountBalance());
+				
+//				//updates the CurrentUser with the new balance
+//				this.currentUser = newBalance;
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

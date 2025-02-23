@@ -19,7 +19,7 @@
             </Label>
             <DatePicker fx:id="startDate" layoutX="88.0" layoutY="155.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="Start Date" />
             <DatePicker fx:id="endDate" layoutX="359.0" layoutY="155.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleDateRange" prefHeight="30.0" prefWidth="150.0" promptText="End Date" />
-            <TextField fx:id="licensePlate" alignment="CENTER" layoutX="224.0" layoutY="313.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#handleLicensePlate" prefHeight="30.0" promptText="License Plate Number">
+            <TextField fx:id="licensePlate" alignment="CENTER" layoutX="224.0" layoutY="313.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" promptText="License Plate Number">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
