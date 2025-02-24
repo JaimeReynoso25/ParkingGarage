@@ -2,11 +2,16 @@ package managereservationspkg;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import menupkg.MenuController;
@@ -39,6 +44,10 @@ public class ManageReservationsController {
 	@FXML
 	private Label label;
 	
+	private int daysBetween;
+	private LocalDate currentDate = LocalDate.now();
+	private int refundAmount;
+	
 	public void initialize() throws SQLException {
 		//updates garage table before loading everything up.
 		sqlRepository.updateGarageTable();
@@ -68,13 +77,39 @@ public class ManageReservationsController {
 	private void handleDeleteButton(ActionEvent event) throws SQLException {
 		Reservation selectedReservation = reservationsList.getSelectionModel().getSelectedItem();
 		
+		if (currentDate.isBefore(selectedReservation.getStart_date())) {
+			daysBetween = (int) ChronoUnit.DAYS.between(selectedReservation.getStart_date(), selectedReservation.getEnd_date()) + 1;
+			refundAmount = daysBetween * 10;
+			System.out.println(refundAmount + "<- Refund         days->" + daysBetween);
+		} else {
+			daysBetween = (int) ChronoUnit.DAYS.between(currentDate, selectedReservation.getEnd_date());
+			refundAmount = daysBetween * 5;
+			System.out.println(refundAmount + "<- Refund         days->" + daysBetween);
+		}	
+		
 		if (selectedReservation != null) {
+			//create confirmation dialog
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.setTitle("Confirm Deletion");
+			alert.setHeaderText("Delete Reservation");
+			alert.setContentText("Are you sure you want to delete the reservation?\n\nLicense Plate: " +
+								  selectedReservation.getLicenseplate() + "\nRefund Amount: $" + refundAmount);
 			
-			//delete from DataBase
-			sqlRepository.deleteReservation(selectedReservation.getLicenseplate());
+			//Show's alert box and wait for response
+			Optional<ButtonType> result = alert.showAndWait();
 			
-			// Remove from ListView
-            reservationsList.getItems().remove(selectedReservation);
+			//if user confirms, proceed with deletion
+			if (result.isPresent() && result.get() == ButtonType.OK) {	
+				//delete from DataBase
+				sqlRepository.deleteReservation(selectedReservation.getLicenseplate());
+				
+				// Remove from ListView
+	            reservationsList.getItems().remove(selectedReservation);
+	            
+	            label.setText("Reservation for License Plate: \"" + selectedReservation.getLicenseplate() + "\" deleted succesfully!");
+			}
+			
+
 		}
 	}
 

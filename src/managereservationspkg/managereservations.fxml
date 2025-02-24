@@ -21,15 +21,20 @@
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Button>
-            <ListView fx:id="reservationsList" layoutX="71.0" layoutY="63.0" prefHeight="182.0" prefWidth="445.0" />
+            <ListView fx:id="reservationsList" layoutX="71.0" layoutY="109.0" prefHeight="182.0" prefWidth="445.0" />
             <Button fx:id="deleteButton" layoutX="336.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="38.0" prefWidth="150.0" style="-fx-cursor: hand;" text="Delete Reservation">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="label" layoutX="159.0" layoutY="278.0" text="Please select a reservation to delete.">
+            <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="298.0" prefHeight="20.0" prefWidth="570.0" text="Please select a reservation to delete." textAlignment="CENTER">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="label1" alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="52.0" prefHeight="54.0" prefWidth="322.0" text="If your reservation has already begun, you will only recieve a 50% refund for any unused days.Today's date will not be refunded." textAlignment="CENTER" textFill="RED" wrapText="true">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Label>
          </children>
