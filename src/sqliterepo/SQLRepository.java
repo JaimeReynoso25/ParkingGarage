@@ -21,7 +21,7 @@ import objects.Reservation;
 
 public class SQLRepository {
 	/**
-	 * construcxtor to pass the database connection
+	 * Constructor to pass the database connection
 	 * @param connection
 	 */
 	
@@ -352,22 +352,56 @@ public class SQLRepository {
         }
     }
     
-    public List<String> loadReservations(CurrentUser currentUser) throws SQLException {
+    
+    /*
+     *  This method automatically loads up a list of all of the user's
+     *  reservations in order by their start date
+     */
+    public List<Reservation> loadReservations(CurrentUser currentUser) throws SQLException {
     	String email = currentUser.getEmail();
-    	List<String> reservationDetailsList = new ArrayList<>();
+    	List<Reservation> reservationList = new ArrayList<>();
     	
+    	//pulls all of a user's reservations based off of email with an sql query
     	PreparedStatement stmt = connection.prepareStatement("SELECT start_date, end_date, license_plate FROM reservations WHERE email = ? ORDER BY start_date");
     	stmt.setString(1, email);
     	ResultSet rs = stmt.executeQuery();
     	
+    	//grabs the three parameters that will be needed for the List
     	while (rs.next()) {
-            String reservationDetails = "Start: " + rs.getString("start_date") +
-            							"      End: " + rs.getString("end_date") +
-            							"      License Plate: " + rs.getString("license_plate");
-            reservationDetailsList.add(reservationDetails); // Add each reservation to the list
+            String startDateString = rs.getString("start_date");
+            LocalDate startDate = LocalDate.parse(startDateString);
+            
+            String endDateString = rs.getString("end_date");
+            LocalDate endDate = LocalDate.parse(endDateString);
+            
+            String licenseplate = rs.getString("license_plate");
+           
+            //the string can be blank since it won't be needed in the toString() method
+            //and we already verified that they are from the currentUser's email
+            Reservation reservation = new Reservation(" ", licenseplate, startDate, endDate);
+            
+            reservationList.add(reservation); 
         }
-    	return reservationDetailsList;
+    	return reservationList;
     }
+
+	public void deleteReservation(String licensePlate) throws SQLException {
+		
+		//checks to see if the car is already parked in the garage. If it is, remove it
+		String clearGarageQuery = "UPDATE garage SET occupied = 0, email = NULL, license_plate = NULL WHERE license_plate = ?";
+        PreparedStatement clearGarageStmt = connection.prepareStatement(clearGarageQuery);
+        clearGarageStmt.setString(1, licensePlate);
+        clearGarageStmt.executeUpdate();
+		
+		// delete the user's reservation
+        String deleteReservationQuery = "DELETE FROM reservations WHERE license_plate = ?";
+        PreparedStatement deleteReservationStmt = connection.prepareStatement(deleteReservationQuery);
+        deleteReservationStmt.setString(1, licensePlate);
+        deleteReservationStmt.executeUpdate();
+		
+	}
+    
+    
 }
 	
 	

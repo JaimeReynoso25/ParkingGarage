@@ -87,20 +87,10 @@ public class ReserveSpotController {
 
 	private double chargedUser;
 
-	/**
-	 * initializes the controller,sets up the inactivity timer 
-	 * and removes past
-	 * dates from the calendar. ensures a valid database connection.
-	 */
-
+	// removes past dates from calendar and loads the users balance
 	@FXML
 	public void initialize() {
-
-		// call remove past dates, then initialize the database connection to remove the
-		// past dates on the calendar at startup
 		removePastDatesFromCalendar();
-		
-		// display users current balance as soon as they arrive on the scene
 		loadUserBalance(currentUser);
 	}
 
@@ -114,7 +104,6 @@ public class ReserveSpotController {
 	private void handleMenuButton(ActionEvent event) {
 
 		MenuController menuController = new MenuController(currentUser, connection);
-
 		SceneChanger sc = new SceneChanger();
 		sc.sceneChanger(event, "menu", "UIS Parking Garage Main Menu", menuController);
 	}
@@ -177,9 +166,9 @@ public class ReserveSpotController {
 			// if license plate is not in the garage and the user has sufficient funds then
 			// add the user to the reservation table
 			Reservation reserve = new Reservation(currentUser.getEmail(), licensePlate.getText(), start, end);
-			
 			sqlRepository.makeReservation(reserve);
 
+			//updates the user's account balance
 			currentUser = sqlRepository.updateUserBalance(currentUser, (-charge));
 			loadUserBalance(currentUser);
 			label1.setText("Payment processed, your remaining balance is: $" + currentUser.getAccountBalance());
@@ -191,7 +180,7 @@ public class ReserveSpotController {
 			label2.setText("Days Reserved: " + start + " - " + end + "| Charged: $" + chargedUser);
 			label3.setText("Now returning to the main menu...");
 
-			// boolean used for testing purposes
+			// boolean used for JUnit testing purposes
 			successfulRegistration = true;
 
 			returnToMenu(10);
@@ -200,8 +189,8 @@ public class ReserveSpotController {
 	}
 
 	/**
-	 * logs out the user after amt of time disables buttons and navigates back to
-	 * login
+	 * This method automatically returns the user back to the 
+	 * Main Menu with a 10 second delay after making a successful reservation
 	 *
 	 * @param delay time in seconds before logging out
 	 */

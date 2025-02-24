@@ -22,13 +22,6 @@ import sqliterepo.SQLRepository;
 public class RegisterController implements Initializable {
 
 	/**
-	 * default constructor
-	 */
-
-	public RegisterController() {
-	}
-
-	/**
 	 * constructor for RegisterController, has parameter
 	 * 
 	 * @param connection to database

@@ -21,6 +21,12 @@ public class Reservation {
 	private LocalDate end_date;
 	private boolean alreadyParked;
 	
+	// This toString() method provides a readable representation in the ManageReservations scene
+    @Override
+    public String toString() {
+        return "Start Date: " + start_date + "      End Date: " + end_date + "      License Plate: " + licenseplate;
+    }
+    
 	/**
 	 * getters and setters
 	 * @return requested fields
