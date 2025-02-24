@@ -6,14 +6,6 @@ package objects;
  */
 
 public class CurrentUser {
-	/**
-	 * default constructor
-	 */
-	public CurrentUser() {}
-	
-	private String email;
-	private double accountBalance;
-	
 
     /**
      * constructor for currentuser has parameters
@@ -27,6 +19,8 @@ public class CurrentUser {
 		this.accountBalance = accountBalance;
 	}
 	
+	private String email;
+	private double accountBalance;
 
 	
 	/**method to delete currentUser when you log out

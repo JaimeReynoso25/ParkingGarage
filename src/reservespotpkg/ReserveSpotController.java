@@ -149,10 +149,11 @@ public class ReserveSpotController {
 	 * funds are available
 	 *
 	 * @param triggered by the button click
+	 * @throws ClassNotFoundException 
 	 */
 
 	@FXML
-	private void handlePayButton(ActionEvent event) {
+	private void handlePayButton(ActionEvent event) throws ClassNotFoundException {
 
 		// this needs to first check the users balance against the days being reserved
 		double charge = (daysBetween * 10);
@@ -175,29 +176,13 @@ public class ReserveSpotController {
 		else {
 			// if license plate is not in the garage and the user has sufficient funds then
 			// add the user to the reservation table
-			Reservation reserve = new Reservation();
-			reserve.setEmail(currentUser.getEmail());
-			reserve.setLicenseplate(licensePlate.getText());
-			reserve.setStart_date(start);
-			reserve.setEnd_date(end);
-			try {
-				sqlRepository.makeReservation(reserve);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Reservation reserve = new Reservation(currentUser.getEmail(), licensePlate.getText(), start, end);
+			
+			sqlRepository.makeReservation(reserve);
 
-			try {
-				currentUser = sqlRepository.updateUserBalance(currentUser, (-charge));
-				loadUserBalance(currentUser);
-				label1.setText("Payment processed, your remaining balance is: $" + currentUser.getAccountBalance());
-				
-//				//updates the CurrentUser with the new balance
-//				this.currentUser = newBalance;
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			currentUser = sqlRepository.updateUserBalance(currentUser, (-charge));
+			loadUserBalance(currentUser);
+			label1.setText("Payment processed, your remaining balance is: $" + currentUser.getAccountBalance());
 
 			// disables other buttons from working.
 			mainMenuButton.setDisable(true);

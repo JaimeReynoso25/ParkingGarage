@@ -8,6 +8,13 @@ import java.time.LocalDate;
 
 public class Reservation {
 	
+	public Reservation(String email, String licensePlate, LocalDate start_date, LocalDate end_date) {
+		this.email = email;
+		this.licenseplate = licensePlate;
+		this.start_date = start_date;
+		this.end_date = end_date;
+	}
+	
 	private String email;
 	private String licenseplate;
 	private LocalDate start_date;
