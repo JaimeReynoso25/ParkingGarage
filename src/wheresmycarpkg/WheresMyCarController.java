@@ -20,14 +20,6 @@ import sqliterepo.SQLRepository;
  */
 
 public class WheresMyCarController {
-
-    /**
-     * default constructor for wheresmycarcontroller.
-     */
-    
-    public WheresMyCarController() {
-    }
-
     /**
      * constructor has parameters
      *

@@ -19,15 +19,7 @@ import sqliterepo.SQLRepository;
  * users can add funds to their account also displays their updated balance.
  */
 
-public class AddFundsController {
-
-	
-    /**
-     * default constructor
-     */
-	public AddFundsController() {
-	}
-	
+public class AddFundsController {	
 	/**
      * constructor for addfundscontroller has parameters.
      *
@@ -40,7 +32,6 @@ public class AddFundsController {
 		this.connection = connection;
 		sqlRepository = new SQLRepository(connection);
 	}
-
 
 	private CurrentUser currentUser;
 
@@ -66,7 +57,6 @@ public class AddFundsController {
 	public void initialize() {
 		loadUserBalance(currentUser);
 	}
-
 	
 	/**
      * handles the "main menu" button click
@@ -114,25 +104,21 @@ public class AddFundsController {
 		}
 	}
 
-
 /*
  * 
  * method to retrieve and display user's balance from the Current User
  * 
  */
-
 	private void loadUserBalance(CurrentUser currentUser) {
-
 		accountBalanceField.setText(String.format("$%.2f", currentUser.getAccountBalance()));
-	}
-
+	}	
 	
 	/*
 	 * Getters and setters below for testing
 	 * AddFundsControllerTest.java
 	 * 
 	 */
-
+	
 	public TextField getAddFundsField() {
 		return addFundsField;
 	}

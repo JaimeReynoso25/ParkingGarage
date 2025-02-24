@@ -26,14 +26,7 @@ import sqliterepo.SQLRepository;
  */
 
 
-public class LoginController implements Initializable {
-	
-	/**
-	 * default constructor
-	 */
-	public LoginController() {
-	}
-	
+public class LoginController implements Initializable {	
     /**
      *  constructor for logincontroller, has parameter
      *
@@ -71,8 +64,7 @@ public class LoginController implements Initializable {
     private Label statusLabel;
 	
 	private SQLRepository sqlRepository;
-	
-	
+		
 	/**
      * handles the "sign up" button click
      * navigates to the registration page
@@ -98,7 +90,6 @@ public class LoginController implements Initializable {
 		SceneChanger sc = new SceneChanger();
 		sc.sceneChanger(event, "wheresmycar", "Dude, where's my car?!", wheresMyCarController);
 	}
-	
 	
 	 /**
      * handles the "login" button click
@@ -174,7 +165,7 @@ public class LoginController implements Initializable {
             if (event.getCode() == KeyCode.TAB) {
                 // move focus to the password field
                 passwordField.requestFocus();
-//                default prevention
+                //default prevention
                 event.consume(); 
             }
         });
@@ -233,5 +224,4 @@ public class LoginController implements Initializable {
 	public Connection getConnection() {
 	    return connection;
 	}
-
 }

@@ -14,19 +14,11 @@ import scenechangerpkg.SceneChanger;
 
 /**
  * controller class for the main menu of the parking garage application.
- * handles user interactions for navigating to different functionalitie:
- * adding funds, reserving a parking spot, car location.
+ * handles user interactions for navigating to different functionalities:
+ * adding funds, reserving a parking spot, and managing reservations.
  */
 
 public class MenuController {
-	
-	/**
-	 * default constructor
-	 */
-
-	public MenuController() {
-	}
-	
 	
 	  /**
      * parameter constructor for menucontroller.
@@ -56,7 +48,6 @@ public class MenuController {
 	@FXML
 	private Button logOutButton;
 
-	
 	/**
      * handles the "add funds" button click
      * navigates to the add funds scene
@@ -74,8 +65,7 @@ public class MenuController {
 		sc.sceneChanger(event, "addfunds", "UIS Account Balance Overview", addFundsController);
 		
 	}
-	
-	
+		
 	  /**
      * handles the "reserve a spot" button
      * navigates to the reserve spot scene

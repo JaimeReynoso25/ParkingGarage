@@ -48,8 +48,8 @@ class WheresMyCarControllerTest {
         handleFindMyCarMethod = WheresMyCarController.class.getDeclaredMethod("handleFindMyCar", ActionEvent.class);
         handleFindMyCarMethod.setAccessible(true);
 
-        // set the controller with userr and database connection
-        controller = new WheresMyCarController(currentUser, connection);
+        // set the controller with user and database connection
+        controller = new WheresMyCarController(connection);
 
         injectComponents();
     }
@@ -58,8 +58,6 @@ class WheresMyCarControllerTest {
 //        setup the components
         controller.setLocationText(new Label());
         controller.setLicensePlate(new TextField());
-        controller.setFindMyCar(new Button());
-        controller.setMainMenuButton(new Button());
     }
     
     @AfterEach
@@ -85,7 +83,7 @@ class WheresMyCarControllerTest {
     	handleFindMyCarMethod.invoke(controller, mockEvent);
     	
     	// verifies that a user can search up their car in the database
-    	assertEquals("Your car is located in spot: 5", controller.getLocationText().getText());
+    	assertEquals("Your car is located in spot: #5", controller.getLocationText().getText());
     	
     	// deletes the car from the garage table, to ensure it stays empty
     	statement.execute("UPDATE garage SET occupied = 0, email = 'NULL', license_plate = 'NULL' WHERE parkingSpot = 5");

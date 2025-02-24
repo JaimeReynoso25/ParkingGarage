@@ -52,9 +52,4 @@ public class CurrentUser {
 	public double getAccountBalance() {
 		return accountBalance;
 	}
-	
-	
-
 }
-
-

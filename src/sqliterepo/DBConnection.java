@@ -6,40 +6,17 @@ import java.sql.SQLException;
 
 /**
  * class that manages database connection to a SQLite database. static method to
- * get a connection to databaase
+ * get a connection to database
  */
 
 public class DBConnection {
 
 	private static Connection connection;
 
-	/**
-	 * default constructor
-	 */
-	public DBConnection() {
-	}
-
-	/**
-	 * returns a connection to the SQLite database. if the connection is already
-	 * open, it reuses the existing connection,otherwise, it will init a new
-	 * connection.
-	 *
-	 * @return the connection to the SQLite database
-	 * @throws ClassNotFoundException if SQLite JDBC driver is not found
-	 * @throws SQLException
-	 */
-
+	//returns a connection to the SQLite database. 
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		if (connection == null || connection.isClosed()) {
-			try {
-				Class.forName("org.sqlite.JDBC");
-				String url = "jdbc:sqlite:garage_system.db";
-				connection = DriverManager.getConnection(url);
-			} catch (SQLException e) {
-				System.out.println("SQL Exception: " + e.getMessage());
-			} catch (ClassNotFoundException e) {
-				System.out.println("JDBC Class not found: " + e.getMessage());
-			}
+			connection = DriverManager.getConnection("jdbc:sqlite:garage_system.db");
 		}
 		return connection;
 	}
