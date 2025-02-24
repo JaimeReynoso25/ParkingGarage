@@ -81,11 +81,9 @@ public class ManageReservationsController {
 		if (currentDate.isBefore(selectedReservation.getStart_date())) {
 			daysBetween = (int) ChronoUnit.DAYS.between(selectedReservation.getStart_date(), selectedReservation.getEnd_date()) + 1;
 			refundAmount = daysBetween * 10;
-			System.out.println(refundAmount + "<- Refund         days->" + daysBetween);
 		} else {
 			daysBetween = (int) ChronoUnit.DAYS.between(currentDate, selectedReservation.getEnd_date());
 			refundAmount = daysBetween * 5;
-			System.out.println(refundAmount + "<- Refund         days->" + daysBetween);
 		}	
 		
 		if (selectedReservation != null) {
