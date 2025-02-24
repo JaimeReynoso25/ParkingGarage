@@ -362,7 +362,8 @@ public class SQLRepository {
     	List<Reservation> reservationList = new ArrayList<>();
     	
     	//pulls all of a user's reservations based off of email with an sql query
-    	PreparedStatement stmt = connection.prepareStatement("SELECT start_date, end_date, license_plate FROM reservations WHERE email = ? ORDER BY start_date");
+    	PreparedStatement stmt = connection.prepareStatement("SELECT start_date, end_date, license_plate FROM reservations " +
+    			                                             "WHERE email = ? ORDER BY start_date, end_date");
     	stmt.setString(1, email);
     	ResultSet rs = stmt.executeQuery();
     	

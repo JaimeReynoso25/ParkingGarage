@@ -74,9 +74,10 @@ public class ManageReservationsController {
 	}
 	
 	@FXML 
-	private void handleDeleteButton(ActionEvent event) throws SQLException {
+	private void handleDeleteButton(ActionEvent event) throws SQLException, ClassNotFoundException {
 		Reservation selectedReservation = reservationsList.getSelectionModel().getSelectedItem();
 		
+		// Determines whether or not the reservation has started to get the correct refund amount
 		if (currentDate.isBefore(selectedReservation.getStart_date())) {
 			daysBetween = (int) ChronoUnit.DAYS.between(selectedReservation.getStart_date(), selectedReservation.getEnd_date()) + 1;
 			refundAmount = daysBetween * 10;
@@ -93,7 +94,7 @@ public class ManageReservationsController {
 			alert.setTitle("Confirm Deletion");
 			alert.setHeaderText("Delete Reservation");
 			alert.setContentText("Are you sure you want to delete the reservation?\n\nLicense Plate: " +
-								  selectedReservation.getLicenseplate() + "\nRefund Amount: $" + refundAmount);
+								  selectedReservation.getLicenseplate() + "\n\nRefund Amount: $" + refundAmount);
 			
 			//Show's alert box and wait for response
 			Optional<ButtonType> result = alert.showAndWait();
@@ -106,11 +107,16 @@ public class ManageReservationsController {
 				// Remove from ListView
 	            reservationsList.getItems().remove(selectedReservation);
 	            
-	            label.setText("Reservation for License Plate: \"" + selectedReservation.getLicenseplate() + "\" deleted succesfully!");
+	            //Give the refund back to the user once reservation deleted
+	            currentUser = sqlRepository.updateUserBalance(currentUser, refundAmount);     
+	            
+	            // Show success message with a new alert
+	            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+	            successAlert.setTitle("Success");
+	            successAlert.setHeaderText(null);  // No header text
+	            successAlert.setContentText("Reservation for \"" + selectedReservation.getLicenseplate() + "\" deleted successfully!");
+	            successAlert.showAndWait();
 			}
-			
-
 		}
 	}
-
 }

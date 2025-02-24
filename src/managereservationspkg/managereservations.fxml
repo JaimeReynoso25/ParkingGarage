@@ -32,7 +32,7 @@
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="label1" alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="52.0" prefHeight="54.0" prefWidth="322.0" text="If your reservation has already begun, you will only recieve a 50% refund for any unused days.Today's date will not be refunded." textAlignment="CENTER" textFill="RED" wrapText="true">
+            <Label fx:id="label1" alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="52.0" prefHeight="54.0" prefWidth="322.0" text="If your reservation has already begun, you will only recieve a 50% refund for any unused days.Today's date will NOT be refunded." textAlignment="CENTER" textFill="RED" wrapText="true">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
