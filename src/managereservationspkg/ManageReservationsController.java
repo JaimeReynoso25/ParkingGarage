@@ -52,17 +52,22 @@ public class ManageReservationsController {
 		//updates garage table before loading everything up.
 		sqlRepository.updateGarageTable();
 		
-		// display users reservations as soon as they arrive on the scene
+		//loads up the users current reservations onto the scene
+		loadReservations();
+	}
+	
+	private void loadReservations() throws SQLException {
+		// grabs the user's reservations and display them
 		List<Reservation> reservations = sqlRepository.loadReservations(currentUser);
-		reservationsList.getItems().addAll(reservations);
+		getReservationsList().getItems().addAll(reservations);
 		
 		// Add a listener to enable/disable delete button based on selection
-        reservationsList.getSelectionModel().selectedItemProperty().addListener(
-            (observable, oldValue, newValue) -> deleteButton.setDisable(newValue == null)
+        getReservationsList().getSelectionModel().selectedItemProperty().addListener(
+            (observable, oldValue, newValue) -> getDeleteButton().setDisable(newValue == null)
         );
         
         // Initially disable delete button
-        deleteButton.setDisable(true);
+        getDeleteButton().setDisable(true);
 	}
 	
 	@FXML
@@ -75,7 +80,7 @@ public class ManageReservationsController {
 	
 	@FXML 
 	private void handleDeleteButton(ActionEvent event) throws SQLException, ClassNotFoundException {
-		Reservation selectedReservation = reservationsList.getSelectionModel().getSelectedItem();
+		Reservation selectedReservation = getReservationsList().getSelectionModel().getSelectedItem();
 		
 		// Determines whether or not the reservation has started to get the correct refund amount
 		if (currentDate.isBefore(selectedReservation.getStart_date())) {
@@ -103,7 +108,7 @@ public class ManageReservationsController {
 				sqlRepository.deleteReservation(selectedReservation.getLicenseplate());
 				
 				// Remove from ListView
-	            reservationsList.getItems().remove(selectedReservation);
+	            getReservationsList().getItems().remove(selectedReservation);
 	            
 	            //Give the refund back to the user once reservation deleted
 	            currentUser = sqlRepository.updateUserBalance(currentUser, refundAmount);     
@@ -116,5 +121,21 @@ public class ManageReservationsController {
 	            successAlert.showAndWait();
 			}
 		}
+	}
+
+	public ListView<Reservation> getReservationsList() {
+		return reservationsList;
+	}
+
+	void setReservationsList(ListView<Reservation> reservationsList) {
+		this.reservationsList = reservationsList;
+	}
+
+	public Button getDeleteButton() {
+		return deleteButton;
+	}
+
+	public void setDeleteButton(Button deleteButton) {
+		this.deleteButton = deleteButton;
 	}
 }

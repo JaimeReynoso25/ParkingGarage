@@ -14,19 +14,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import objects.CurrentUser;
-import sqliterepo.SQLRepository;
 import toolkit.JavaFXTestUtils;
 
 class WheresMyCarControllerTest {
 
 	private WheresMyCarController controller;
-    private CurrentUser currentUser;
     private Connection connection;
-    private SQLRepository testRepo;
     private Method handleFindMyCarMethod;
     private ActionEvent mockEvent;
 
@@ -37,12 +32,6 @@ class WheresMyCarControllerTest {
         
         // setup test database connection
         connection = DriverManager.getConnection("jdbc:sqlite:garage_system_test.db");
-        testRepo = new SQLRepository(connection);
-        
-        // set the user details
-        currentUser = testRepo.setUserDetails("test@test.com");
-        
-        ActionEvent mockEvent = new ActionEvent();
         
         // setup the methods
         handleFindMyCarMethod = WheresMyCarController.class.getDeclaredMethod("handleFindMyCar", ActionEvent.class);

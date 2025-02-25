@@ -70,6 +70,8 @@ public class ReserveSpotControllerTest {
         controller.setLabel2(new Label());
         controller.setLabel3(new Label());
         
+        controller.setAccountBalanceField(new Label());
+        
         controller.setMainMenuButton(new Button());
         controller.setPayButton(new Button());
         controller.setAddFundsButton(new Button());
@@ -77,6 +79,9 @@ public class ReserveSpotControllerTest {
     
     @AfterEach
     public void closeConnection() throws Exception {
+    	if (statement != null) {
+            statement.close();
+        }
         if (connection != null) {
             connection.close();
         }
@@ -131,8 +136,8 @@ public class ReserveSpotControllerTest {
     public void testPayButton_SuccessfulRegistration() throws Exception {
     	// input a reservation for 5 days, which would cost $50
     	controller.getLicensePlate().setText("ImRich");
-    	LocalDate startDate = localDate;
-    	LocalDate endDate = localDate.plusDays(4); // <----- This number is 0-based. so '4' is actually 5 days
+    	LocalDate startDate = localDate.plusDays(1);
+    	LocalDate endDate = localDate.plusDays(5); // <----- This number is 0-based. so '5' is actually 6 days
     	
     	controller.setStartDate(new DatePicker(startDate));
     	controller.setEndDate(new DatePicker(endDate));

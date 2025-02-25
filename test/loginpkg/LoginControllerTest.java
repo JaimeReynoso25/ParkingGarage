@@ -195,6 +195,9 @@ class LoginControllerTest {
         PreparedStatement checkReservationStmt = connection.prepareStatement(checkReservationDeletion);
         checkReservationStmt.setString(1, "temp2");
         ResultSet checkResult = checkReservationStmt.executeQuery();
+        
+        // clears the reservation table
+     	statement.execute("DELETE FROM reservations");
 
         // Assert that no result is returned, meaning the temp2 license plate is no longer in the reservations table
         assertFalse(checkResult.next());
