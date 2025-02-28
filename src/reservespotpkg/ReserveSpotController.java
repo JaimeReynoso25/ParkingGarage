@@ -13,6 +13,7 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import loginpkg.LoginController;
@@ -121,21 +122,6 @@ public class ReserveSpotController {
 	}
 
 	/**
-	 * handles the "add funds" button navigates to the add funds scene
-	 *
-	 * @param triggered by the button click
-	 */
-
-	@FXML
-	private void handleAddFundsButton(ActionEvent event) {
-
-		// Create an instance of the Add Funds controller and pass user info to it
-		AddFundsController addFundsController = new AddFundsController(currentUser, connection);
-		SceneChanger sc = new SceneChanger();
-		sc.sceneChanger(event, "addfunds", "Account Balance Overview", addFundsController);
-	}
-
-	/**
 	 * handles input for the license plate text field add license plate to object
 	 */
 
@@ -207,7 +193,7 @@ public class ReserveSpotController {
 			addFundsButton.setDisable(true);
 			label2.setText("Now logging out...");
 			label3.setText("You will NOT be charged");
-			logout(10);
+			returnToMenu(10);
 
 			// check users funds
 		} else if (currentUser.getAccountBalance() < (charge)) {
@@ -235,24 +221,24 @@ public class ReserveSpotController {
 				CurrentUser newBalance = sqlRepository.updateUserBalance(currentUser, (-charge));
 				System.out.println("Your available funds are: $" + newBalance.getAccountBalance());
 				Double newbal = newBalance.getAccountBalance();
-				String pmt = "Payment processed, Your available funds are: $" + newbal.toString();
+				String pmt = "Payment processed, your remaining balance is: $" + newbal.toString();
 				label1.setText(pmt);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			// log user out, disables other buttons from working.
+			// disables other buttons from working.
 			mainMenuButton.setDisable(true);
 			payButton.setDisable(true);
-			addFundsButton.setDisable(true);
 
 			label2.setText("Days Reserved: " + start + " - " + end + "| Charged: $" + chargedUser);
+			label3.setVisible(true);
 
 			// boolean used for testing purposes
 			successfulRegistration = true;
 
-			logout(10);
+			returnToMenu(10);
 		}
 
 	}
@@ -264,24 +250,28 @@ public class ReserveSpotController {
 	 * @param delay time in seconds before logging out
 	 */
 
-	private void logout(int time) {
-		// Create a PauseTransition for a 30-second delay
+	private void returnToMenu(int time) {
+		// Create a PauseTransition for a 10-second delay
 		PauseTransition pause = new PauseTransition(Duration.seconds(time));
 
+		// Get the current stage
+	    Stage currentStage = (Stage) mainMenuButton.getScene().getWindow();
+		
 		// Define what happens after the delay
 		pause.setOnFinished(e -> {
 
-			// Re-enables buttons on logout
+			// Re-enables buttons once leaving the scene
 			mainMenuButton.setDisable(false);
 			payButton.setDisable(false);
-			addFundsButton.setDisable(false);
 
-			// Clear the current user information
-			currentUser = null;
+			MenuController menuController = new MenuController(currentUser, connection);
 
-			LoginController loginController = new LoginController(connection);
 			SceneChanger sc = new SceneChanger();
-			sc.sceneEndChanger(null, "login", "UIS Parking Garage Login", loginController);
+			sc.sceneChanger(currentStage, "menu", "UIS Parking Garage Main Menu", menuController);
+//			
+//			LoginController loginController = new LoginController(connection);
+//			SceneChanger sc = new SceneChanger();
+//			sc.sceneEndChanger(null, "login", "UIS Parking Garage Login", loginController);
 		});
 
 		// Start the pause transition
@@ -320,20 +310,6 @@ public class ReserveSpotController {
 	private void loadUserBalance(CurrentUser currentUser) {
 
 		accountBalanceField.setText(String.format("$%.2f", currentUser.getAccountBalance()));
-	}
-
-	/**
-	 * logs out the user after inactivity clears the current user and navigates to
-	 * the login screen
-	 */
-
-	private void logout() {
-		// Clear the current user information
-		currentUser = null;
-		// Create the SceneChanger and switch to login once registration is complete
-		LoginController loginController = new LoginController(connection);
-		SceneChanger sc = new SceneChanger();
-		sc.sceneEndChanger(null, "login", "UIS Parking Garage Login", loginController);
 	}
 
 	/**

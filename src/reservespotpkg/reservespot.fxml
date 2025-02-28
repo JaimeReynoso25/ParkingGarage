@@ -19,17 +19,17 @@
             </Label>
             <DatePicker fx:id="startDate" layoutX="88.0" layoutY="155.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="Start Date" />
             <DatePicker fx:id="endDate" layoutX="359.0" layoutY="155.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleDateRange" prefHeight="30.0" prefWidth="150.0" promptText="End Date" />
-            <TextField fx:id="licensePlate" alignment="CENTER" layoutX="224.0" layoutY="293.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#handleLicensePlate" prefHeight="30.0" promptText="License Plate Number">
+            <TextField fx:id="licensePlate" alignment="CENTER" layoutX="224.0" layoutY="313.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#handleLicensePlate" prefHeight="30.0" promptText="License Plate Number">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </TextField>
-            <Button fx:id="mainMenuButton" layoutX="103.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleMenuButton" prefHeight="40.0" prefWidth="120.0" style="-fx-cursor: hand;" text="Main Menu">
+            <Button fx:id="mainMenuButton" layoutX="103.0" layoutY="368.0" mnemonicParsing="false" onAction="#handleMenuButton" prefHeight="40.0" prefWidth="120.0" style="-fx-cursor: hand;" text="Main Menu">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="payButton" layoutX="374.0" layoutY="348.0" mnemonicParsing="false" onAction="#handlePayButton" prefHeight="40.0" prefWidth="120.0" style="-fx-cursor: hand;" text="Pay">
+            <Button fx:id="payButton" layoutX="374.0" layoutY="368.0" mnemonicParsing="false" onAction="#handlePayButton" prefHeight="40.0" prefWidth="120.0" style="-fx-cursor: hand;" text="Pay">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
@@ -39,7 +39,7 @@
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="label3" alignment="CENTER" contentDisplay="CENTER" layoutX="121.0" layoutY="313.0" prefHeight="22.0" prefWidth="355.0" textAlignment="CENTER">
+            <Label fx:id="label3" alignment="CENTER" contentDisplay="CENTER" layoutX="121.0" layoutY="285.0" prefHeight="22.0" prefWidth="355.0" text="Now returning to the main menu..." textAlignment="CENTER" visible="false">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>

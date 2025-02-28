@@ -1,6 +1,5 @@
 package application;
 
-
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -12,7 +11,6 @@ import javafx.stage.Stage;
 import loginpkg.LoginController;
 import sqliterepo.DBConnection;
 
-
 /**
  * main class for launching the parking garage application.
  * initializes the database connection, sets up the primary stage,
@@ -23,9 +21,6 @@ public class Main extends Application {
 
 	private Connection connection;
 	private static Stage primaryStage;
-	
-	
-	
 	
 	 /**
      * starts the apoplication

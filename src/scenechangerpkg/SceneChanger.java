@@ -57,6 +57,26 @@ public class SceneChanger {
 		}
 
 	}
+	
+	public void sceneChanger(Stage stage, String fxmlFile, String title, Object controller) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/" + fxmlFile + "pkg/" + fxmlFile + ".fxml"));
+            
+            // set the controller for the new scene, passing on user data
+            loader.setController(controller);
+            HBox newPage = loader.load();
+            
+            // create a new scene with the loaded FXML
+            Scene newScene = new Scene(newPage);
+            
+            // set the new scene
+            stage.setScene(newScene);
+            stage.setTitle(title);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 	/**
 	 * changes the scene and clears user data if necessary. this method is for when
@@ -70,32 +90,32 @@ public class SceneChanger {
 	 */
 
 
-	public void sceneEndChanger(ActionEvent event, String fxmlFile, String title, Object controller) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/" + fxmlFile + "pkg/" + fxmlFile + ".fxml"));
-
-			loader.setController(controller);
-			HBox newPage = loader.load();
-
-			// a new scene with the fxml
-			Scene newScene = new Scene(newPage);
-
-			Stage stage;
-			if (event != null) {
-				// if the event is not null, get the stage
-				stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			} else {
-				// if the event is null, use the primary stage 
-				stage = Main.getPrimaryStage();
-			}
-
-			stage.setScene(newScene);
-			// set the title of the stage
-			stage.setTitle(title);
-			stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	public void sceneEndChanger(ActionEvent event, String fxmlFile, String title, Object controller) {
+//		try {
+//			FXMLLoader loader = new FXMLLoader(getClass().getResource("/" + fxmlFile + "pkg/" + fxmlFile + ".fxml"));
+//
+//			loader.setController(controller);
+//			HBox newPage = loader.load();
+//
+//			// a new scene with the fxml
+//			Scene newScene = new Scene(newPage);
+//
+//			Stage stage;
+//			if (event != null) {
+//				// if the event is not null, get the stage
+//				stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//			} else {
+//				// if the event is null, use the primary stage 
+//				stage = Main.getPrimaryStage();
+//			}
+//
+//			stage.setScene(newScene);
+//			// set the title of the stage
+//			stage.setTitle(title);
+//			stage.show();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 }
