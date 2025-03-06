@@ -100,7 +100,7 @@ public class ManageReservationsController {
 								  selectedReservation.getLicenseplate() + "\n\nRefund Amount: $" + refundAmount);
 			
 			//Show's alert box and wait for response
-			Optional<ButtonType> result = alert.showAndWait();
+			Optional<ButtonType> result = showConfirmationDialog(alert);
 			
 			//if user confirms, proceed with deletion
 			if (result.isPresent() && result.get() == ButtonType.OK) {	
@@ -118,9 +118,17 @@ public class ManageReservationsController {
 	            successAlert.setTitle("Success");
 	            successAlert.setHeaderText(null);  // No header text
 	            successAlert.setContentText("Reservation for \"" + selectedReservation.getLicenseplate() + "\" deleted successfully!");
-	            successAlert.showAndWait();
+	            showInformationDialog(successAlert);
 			}
 		}
+	}
+	
+	protected Optional<ButtonType> showConfirmationDialog(Alert alert) {
+	    return alert.showAndWait();
+	}
+
+	protected void showInformationDialog(Alert alert) {
+	    alert.showAndWait();
 	}
 
 	public ListView<Reservation> getReservationsList() {
